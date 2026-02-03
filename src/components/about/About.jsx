@@ -2,10 +2,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import theme from "../../theme/Theme";
 
+import ShootingStarsBackground from "./ShootingStarsBackground";
+
 const About = () => {
   return (
     <section id="about" className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-6 md:px-12">
+      {/* Background Animation */}
+      <ShootingStarsBackground />
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -24,7 +28,10 @@ const About = () => {
             className="text-lg md:text-xl leading-relaxed mb-12"
             style={{ color: theme.colors.textSecondary }}
           >
-            I am an fresher and a strong foundation in the MERN (MongoDB, Express.js, React.js, Node.js) stack and also I have a strong foundation in Figma design. I am passionate about crafting efficient, user-friendly, and scalable web applications{" "}
+            I am an fresher and a strong foundation in the MERN (MongoDB,
+            Express.js, React.js, Node.js) stack and also I have a strong
+            foundation in Figma design. I am passionate about crafting
+            efficient, user-friendly, and scalable web applications{" "}
             <span style={{ color: theme.colors.textPrimary }}>
               UI/UX design
             </span>{" "}
