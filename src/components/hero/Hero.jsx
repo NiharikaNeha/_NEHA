@@ -3,19 +3,15 @@ import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 import theme from "../../theme/Theme";
 import Button from "../common/Button";
-import image from "../../assets/Me.jpeg"
-import resume from "../../assets/Neha_Resume.pdf"
+import image from "../../assets/Me.jpeg";
+import resume from "../../assets/Neha_Resume.pdf";
+import ParticleNetwork from "./ParticleNetwork";
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-background">
-      {/* Background Gradient/Glow */}
-      <div
-        className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-20 blur-[100px] pointer-events-none"
-        style={{
-          background: `radial-gradient(circle, ${theme.colors.accentPrimary} 0%, transparent 70%)`,
-        }}
-      />
+      {/* Particle Network Background */}
+      <ParticleNetwork />
 
       <div className="container mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-12 items-center">
         {/* Text Content */}
@@ -35,16 +31,16 @@ const Hero = () => {
             style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }} // Responsive heading
           >
             Hi! <br />
-            <span style={{ color: theme.colors.accentPrimary }}>
-              I'm
-            </span>{" "}
-            Neha.<span className="text-5xl">👋🏻</span>
+            <span style={{ color: theme.colors.accentPrimary }}>I'm</span> Neha.
+            <span className="text-5xl">👋🏻</span>
           </h1>
           <p
             className="text-lg mb-8 max-w-lg leading-relaxed"
             style={{ color: theme.colors.textSecondary }}
           >
-            I am a Fullstack web developer & a UI/UX designer from Bhubaneswar. I'm a fresher and I'm finding a job in web development and as a UI/UX designer.
+            I am a Fullstack web developer & a UI/UX designer from Bhubaneswar.
+            I'm a fresher and I'm finding a job in web development and as a
+            UI/UX designer.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -60,10 +56,7 @@ const Hero = () => {
             >
               View Work
             </Button>
-            <Button
-              href={resume}
-              variant="outline"
-            >
+            <Button href={resume} variant="outline">
               View Resume
             </Button>
           </div>
@@ -77,21 +70,23 @@ const Hero = () => {
           className="relative flex justify-center md:justify-end"
         >
           <div className="relative w-80 h-80 md:w-96 md:h-96">
-            {/* Glow Effect */}
-            <div
-              className="absolute inset-0 rounded-full blur-[20px] opacity-40 animate-pulse"
-              style={{ backgroundColor: theme.colors.accentPrimary }}
-            />
-            {/* Image Container */}
-            <div
-              className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-accent-primary/30 z-10"
-              style={{ borderColor: `${theme.colors.accentPrimary}4D` }}
-            >
-              <img
-                src={image}
-                alt="Profile"
-                className="w-full h-full object-cover"
+            <div className="w-full h-full relative">
+              {/* Glow Effect */}
+              <div
+                className="absolute inset-0 rounded-full blur-[20px] opacity-40 animate-pulse"
+                style={{ backgroundColor: theme.colors.accentPrimary }}
               />
+              {/* Image Container */}
+              <div
+                className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-accent-primary/30 z-10"
+                style={{ borderColor: `${theme.colors.accentPrimary}4D` }}
+              >
+                <img
+                  src={image}
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
             {/* Decorative Badge */}
             <motion.div
