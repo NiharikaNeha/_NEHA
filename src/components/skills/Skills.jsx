@@ -3,18 +3,13 @@ import { motion } from "framer-motion";
 import theme from "../../theme/Theme";
 
 const skills = [
+  "HTML & CSS",
   "JavaScript (ES6+)",
   "React.js",
-  "Next.js",
-  "TypeScript",
-  "Node.js",
   "Tailwind CSS",
   "Framer Motion",
-  "Three.js",
-  "PostgreSQL",
-  "GraphQL",
-  "Docker",
-  "AWS",
+  "Git & GitHub",
+  "Figma",
 ];
 
 const Skills = () => {
