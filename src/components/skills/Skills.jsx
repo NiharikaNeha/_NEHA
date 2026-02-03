@@ -31,8 +31,8 @@ const Skills = () => {
               className="font-heading text-3xl md:text-4xl font-bold mb-4"
               style={{ color: theme.colors.textPrimary }}
             >
-              Technical{" "}
-              <span style={{ color: theme.colors.accentPrimary }}>Arsenal</span>
+              TechStack{" "}
+              <span style={{ color: theme.colors.accentPrimary }}>I Prefer</span>
             </h2>
             <p style={{ color: theme.colors.textMuted }}>
               The tools and technologies I use to bring ideas to life.
