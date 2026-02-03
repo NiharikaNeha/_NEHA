@@ -6,12 +6,13 @@ import Button from "../common/Button";
 import image from "../../assets/Me.jpeg";
 import resume from "../../assets/Neha_Resume.pdf";
 import ParticleNetwork from "./ParticleNetwork";
-
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-background">
-      {/* Particle Network Background */}
-      <ParticleNetwork />
+      {/* Foreground Layer: Particle Network (Magnetic Lines) */}
+      <div className="absolute inset-0 z-0">
+        <ParticleNetwork />
+      </div>
 
       <div className="container mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-12 items-center">
         {/* Text Content */}

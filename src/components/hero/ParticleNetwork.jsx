@@ -10,11 +10,13 @@ const ParticleNetwork = () => {
     let width = window.innerWidth;
     let height = window.innerHeight;
     let particles = [];
-    let time = 0;
 
     // Configuration
-    const particleCount = Math.min(Math.floor(window.innerWidth / 5), 300); // Dense but performant
+    const particleCount = Math.min(Math.floor(window.innerWidth / 15), 60); // Sparse luxury feel
+    const connectionDistance = 200; // Balanced length
+    const mouseDistance = 200;
 
+    // Resize handling
     const resize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
@@ -23,79 +25,92 @@ const ParticleNetwork = () => {
       initParticles();
     };
 
+    // Mouse handling
+    let mouse = { x: null, y: null };
+    window.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+
+    window.addEventListener("mouseleave", () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
     class Particle {
-      constructor(x) {
-        this.x = x;
-        this.y = height / 2;
-        this.baseY = height / 2;
-        this.offset = Math.random() * 100; // Random offset for wave
-        this.speed = 0.002 + Math.random() * 0.002;
-        this.size = Math.random() * 2;
-        this.alpha = 0.1 + Math.random() * 0.4;
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5; // Slow movement
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 2 + 1;
+        this.color = theme.colors.accentPrimary; // Use theme color
       }
 
-      update(t) {
-        // Complex wave function: superposition of sine waves
-        const wave1 = Math.sin(this.x * 0.003 + t + this.offset);
-        const wave2 = Math.sin(this.x * 0.01 + t * 2 + this.offset);
-        const wave3 = Math.cos(this.x * 0.005 + t);
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
 
-        // Combine waves for "organic" feel
-        const displacement = wave1 * 100 + wave2 * 50 + wave3 * 20;
+        // Bounce off edges
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
 
-        this.y = this.baseY + displacement;
-
-        // Gentle horizontal drift
-        this.x += 0.5;
-        if (this.x > width) {
-          this.x = 0;
+        // Mouse interaction
+        if (mouse.x != null) {
+          let dx = mouse.x - this.x;
+          let dy = mouse.y - this.y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < mouseDistance) {
+            const forceDirectionX = dx / distance;
+            const forceDirectionY = dy / distance;
+            const force = (mouseDistance - distance) / mouseDistance;
+            const directionX = forceDirectionX * force * this.size;
+            const directionY = forceDirectionY * force * this.size;
+            this.x -= directionX;
+            this.y -= directionY;
+          }
         }
       }
 
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(201, 162, 77, ${this.alpha})`; // theme.colors.accentPrimary
+        ctx.fillStyle = this.color;
         ctx.fill();
-
-        // Optional: Draw subtle vertical lines for "curtain" effect
-        if (Math.random() > 0.98) {
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(201, 162, 77, ${this.alpha * 0.2})`;
-          ctx.moveTo(this.x, this.y);
-          ctx.lineTo(this.x, this.y + 20); // Short drip
-          ctx.stroke();
-        }
       }
     }
 
     const initParticles = () => {
       particles = [];
       for (let i = 0; i < particleCount; i++) {
-        // Distribute across width
-        const x = Math.random() * width;
-        particles.push(new Particle(x));
+        particles.push(new Particle());
       }
     };
 
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Draw faint gradient trail for "motion blur" feel (optional, simplistic version here)
-      // ctx.fillStyle = 'rgba(11, 11, 11, 0.1)';
-      // ctx.fillRect(0,0,width,height);
-
-      time += 0.01;
-
-      // Connect close particles for "mesh" look
-      // Optimization: Only connect neighbors? No, simpler is better for "Attraction".
-      // Let's just draw the particles as a "Dust" wave.
-
       for (let i = 0; i < particles.length; i++) {
-        particles[i].update(time);
+        particles[i].update();
         particles[i].draw();
-      }
 
+        // Draw connections
+        for (let j = i; j < particles.length; j++) {
+          let dx = particles[i].x - particles[j].x;
+          let dy = particles[i].y - particles[j].y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < connectionDistance) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(201, 162, 77, ${1 - distance / connectionDistance})`; // Gold color fading
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
       requestAnimationFrame(animate);
     };
 
@@ -111,7 +126,7 @@ const ParticleNetwork = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full opacity-40 pointer-events-none"
+      className="absolute inset-0 w-full h-full opacity-30 pointer-events-none"
     />
   );
 };

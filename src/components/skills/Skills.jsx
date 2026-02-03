@@ -1,68 +1,31 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-  Code,
-  Database,
-  Layout,
-  Server,
-  Github,
-  GitBranch,
-  Figma,
-  Terminal,
-} from "lucide-react";
+  FaHtml5,
+  FaCss3,
+  FaFigma,
+  FaGithub,
+  FaReact,
+  FaJsSquare,
+} from "react-icons/fa";
+import { RiTailwindCssFill } from "react-icons/ri";
+import { TbBrandFramerMotion } from "react-icons/tb";
 import theme from "../../theme/Theme";
 import SpotlightCard from "../common/SpotlightCard";
 
-const skills = [
-  { name: "HTML & CSS", icon: Layout },
-  { name: "JavaScript (ES6+)", icon: Code },
-  { name: "React.js", icon: Code }, // Using Code as generic React
-  { name: "Tailwind CSS", icon: Layout },
-  { name: "Framer Motion", icon: SparklesIcon }, // Custom Logic below
-  { name: "Git & GitHub", icon: Github },
-  { name: "Figma", icon: Figma },
-  { name: "Node.js", icon: Server }, // Added for "Arsenal" completeness if applicable, or just map existing
-];
-
-// Helper for Lucide icons vs Image icons if needed.
-// For now, mapping known skills to Lucide.
-const getIcon = (skillName) => {
-  if (skillName.includes("HTML") || skillName.includes("CSS"))
-    return <Layout size={24} />;
-  if (skillName.includes("React") || skillName.includes("JavaScript"))
-    return <Code size={24} />;
-  if (skillName.includes("Git")) return <Github size={24} />;
-  if (skillName.includes("Figma")) return <Figma size={24} />;
-  if (skillName.includes("Framer")) return <Layout size={24} />; // Placeholder
-  return <Terminal size={24} />;
-};
-
 const Skills = () => {
   const skillList = [
-    { name: "HTML & CSS", icon: <Layout size={32} /> },
-    { name: "JavaScript (ES6+)", icon: <Code size={32} /> },
-    { name: "React.js", icon: <Code size={32} /> },
-    { name: "Tailwind CSS", icon: <Layout size={32} /> },
+    { name: "HTML", icon: <FaHtml5 size={32} /> },
+    { name: "CSS", icon: <FaCss3 size={32} /> },
+    { name: "JavaScript (ES6+)", icon: <FaJsSquare size={32} /> },
+    { name: "React.js", icon: <FaReact size={32} /> },
+    { name: "Tailwind CSS", icon: <RiTailwindCssFill size={32} /> },
     {
       name: "Framer Motion",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M12 2L2 12l10 10 10-10L12 2z" />
-        </svg>
-      ),
+      icon: <TbBrandFramerMotion size={32} />,
     }, // Diamond shape for framer
-    { name: "Git & GitHub", icon: <Github size={32} /> },
-    { name: "Figma", icon: <Figma size={32} /> },
+    { name: "Git & GitHub", icon: <FaGithub size={32} /> },
+    { name: "Figma", icon: <FaFigma size={32} /> },
   ];
 
   return (
