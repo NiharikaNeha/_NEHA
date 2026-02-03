@@ -24,10 +24,7 @@ const About = () => {
             className="text-lg md:text-xl leading-relaxed mb-12"
             style={{ color: theme.colors.textSecondary }}
           >
-            I am a passionate creative developer with a keen eye for detail. I
-            bridge the gap between design and engineering, creating software
-            that is not only functional but also intuitive and beautiful. With a
-            background in both{" "}
+            I am an fresher and a strong foundation in the MERN (MongoDB, Express.js, React.js, Node.js) stack and also I have a strong foundation in Figma design. I am passionate about crafting efficient, user-friendly, and scalable web applications{" "}
             <span style={{ color: theme.colors.textPrimary }}>
               UI/UX design
             </span>{" "}
@@ -40,9 +37,9 @@ const About = () => {
 
           <div className="grid md:grid-cols-3 gap-8 text-center">
             {[
-              { count: "50+", label: "Projects Completed" },
+              { count: "10+", label: "Projects Completed" },
               { count: "10+", label: "Happy Clients" },
-              { count: "5+", label: "Years Experience" },
+              { count: "2+", label: "Years Experience" },
             ].map((item, index) => (
               <div key={index} className="p-6">
                 <h3
