@@ -46,9 +46,19 @@ const Skills = () => {
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{
+                scale: 1.05,
+                borderColor: theme.colors.accentPrimary,
+                backgroundColor: `${theme.colors.accentPrimary}0D`, // Slight gold tint
+              }}
+              whileTap={{ scale: 0.95 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="p-4 rounded-lg flex items-center justify-center border transition-colors duration-300 hover:border-accent-primary group"
+              transition={{
+                duration: 0.15, // Fast response
+                ease: "easeOut", // Smooth deceleration
+                delay: index * 0.05, // Keep entrance delay
+              }}
+              className="p-4 rounded-lg flex items-center justify-center border transition-colors duration-300 group cursor-default"
               style={{
                 backgroundColor: theme.colors.background,
                 borderColor: theme.colors.border,
