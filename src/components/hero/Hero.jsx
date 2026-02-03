@@ -34,19 +34,17 @@ const Hero = () => {
             className="font-heading font-bold text-white leading-tight mb-6"
             style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }} // Responsive heading
           >
-            Crafting Digital <br />
+            Hi! <br />
             <span style={{ color: theme.colors.accentPrimary }}>
-              Experience
+              I'm
             </span>{" "}
-            with <br />
-            Precision.
+            Neha.<span className="text-5xl">👋🏻</span>
           </h1>
           <p
             className="text-lg mb-8 max-w-lg leading-relaxed"
             style={{ color: theme.colors.textSecondary }}
           >
-            I build pixel-perfect, engaging, and accessible digital experiences
-            that define the future of the web.
+            I am a Fullstack web developer & a UI/UX designer from Bhubaneswar. I'm a fresher and I'm finding a job in web development and as a UI/UX designer.
           </p>
 
           <div className="flex flex-wrap gap-4">
